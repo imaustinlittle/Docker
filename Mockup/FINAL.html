@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KARAH - LocumTenens.com</title>
+  <style>
+    body {
+      background-color: #336195;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .user {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .bot {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .label {
+      color: #4caf50;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .user .bubble,
+    .bot .bubble {
+      background-color: #ffffff;
+      color: #333333;
+      padding: 10px;
+      border-radius: 20px;
+      max-width: 70%;
+    }
+
+    .user .bubble {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .bot .bubble {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin-left: 10px;
+    }
+
+    .user input {
+      width: 70%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .user button {
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <center><img src="karah.png" alt="KARAH" class="center" width="200" height="200"></center>
+  </div>
+  <div class="container">
+    <div class="message">
+      <div class="label">KARAH:</div>
+      <div class="bot">
+        <div class="bubble">Thank you for reaching out to LocumTenens.com Customer Support. My name is KARAH. How can I assist you today?</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="message">
+      <div class="label">You:</div>
+      <div class="user">
+        <input type="text" id="user-input" placeholder="Your message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      var userInput = document.getElementById("user-input");
+      var userMessage = userInput.value;
+
+      if (userMessage.trim() !== "") {
+        var container = document.createElement("div");
+        container.className = "container";
+
+        var message = document.createElement("div");
+        message.className = "message";
+
+        var label = document.createElement("div");
+        label.className = "label";
+        label.textContent = "You:";
+
+        var userBubble = document.createElement("div");
+        userBubble.className = "user";
+        userBubble.innerHTML = '<div class="bubble">' + userMessage + '</div>';
+
+        message.appendChild(label);
+        message.appendChild(userBubble);
+        container.appendChild(message);
+
+        document.body.appendChild(container);
+
+        // Simulate bot response
+        setTimeout(function() {
+          receiveMessage(userMessage);
+        }, 1000);
+
+        userInput.value = "";
+      }
+    }
+
+    function receiveMessage(userMessage) {
+      var container = document.createElement("div");
+      container.className = "container";
+
+      var messageDiv = document.createElement("div");
+      messageDiv.className = "message";
+
+      var label = document.createElement("div");
+      label.className = "label";
+      label.textContent = "KARAH:";
+
+      var botBubble = document.createElement("div");
+      botBubble.className = "bot";
+      botBubble.innerHTML = '<div class="bubble">' + getBotResponse(userMessage) + '</div>';
+
+      messageDiv.appendChild(label);
+      messageDiv.appendChild(botBubble);
+      container.appendChild(messageDiv);
+
+      document.body.appendChild(container);
+    }
+
+    function getBotResponse(userMessage) {
+      // Add your logic here to determine the appropriate bot response based on the user's message
+
+      // Example logic:
+      if (userMessage.toLowerCase().includes("hello")) {
+        return "Hello! How can I assist you today?";
+      } else if (userMessage.toLowerCase().includes("hi")) {
+        return "Hello! How can I assist you today?";
+      } else if (userMessage.toLowerCase().includes("social")) {
+        return "If the 'business field' on the W9 form contains a special character or space, it may prevent you from entering your SSN. Leave field blank if possible, or use letters, numbers, and standard punctuation marks only.";
+      } else if (userMessage.toLowerCase().includes("addendum")) {
+        return "I will notify your Customer Care Coordinator and it will be resent within 24 hours.";
+      } else if (userMessage.toLowerCase().includes("passenger")) {
+        return "Yes use the segment search feature.";
+      } else if (userMessage.toLowerCase().includes("used")) {
+        return "Once logged into EVO go to travel search apps on the left hand side. Once this is open click segment search. This will open up a new tab. Where you can enter search information. The required search information is the Query Type, Query Value, and at least 2 or more of these search filters: passenger name, vendor name or vendor code, originated date from/to or confirmation number. Once information is entered click the magnifying glass at the top to search. A list of itineraries/invoices meeting the filters will be displayed. The more information you are able to supply the closer the results will be";
+      } else if (userMessage.toLowerCase().includes("check")) {
+        return "To upload a blank check or banking statement, ensure that you use a JPEG photo format. The form may not accept other photo formats.";
+      } else if (userMessage.toLowerCase().includes("upload")) {
+        return "Apologies for the inconvenience. Please upload a photo that is acceptable to the form. Also, send a photo of your blank check or banking statement to the customer care specialist, who will forward it to accounting for setup";
+      } else if (userMessage.toLowerCase().includes("folio")) {
+        return "Is the room type the same on the folio and itinerary, if yes was the room booked under a negotiated rate?";
+      } else if (userMessage.toLowerCase().includes("negotiated")) {
+        return "Please reach out to your customer care specialist to have them or travel follow up on the discrepancy.";
+      } else if (userMessage.toLowerCase().includes("cancel")) {
+        return "Absolutely, I can do that for you right away.";
+      } else {
+        return "I'm sorry, I can't provide a relevant response at the moment.";
+      }
+    }
+  </script>
+</body>
+</html>
+

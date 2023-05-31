@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chatbot</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.chatbot {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.chatbot-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbot-messages {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 100%;
+}
+
+.chatbot-message {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.chatbot-message.user {
+  background-color: #ccc;
+}
+
+.chatbot-message.bot {
+  background-color: #333;
+  color: white;
+}
+
+.chatbot-input {
+  width: 100%;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="chatbot">
+  <div class="chatbot-container">
+    <div class="chatbot-messages">
+      <div class="chatbot-message user">
+        <p>Hi, I'm Bard, a large language model from Google AI. How can I help you today?</p>
+      </div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="input">
+      <button type="submit" id="submit">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const input = document.getElementById("input");
+const submit = document.getElementById("submit");
+
+submit.addEventListener("click", () => {
+  const message = input.value;
+  input.value = "";
+
+  const chatbotMessage = document.createElement("div");
+  chatbotMessage.classList.add("chatbot-message");
+  chatbotMessage.classList.add("bot");
+
+  const p = document.createElement("p");
+  p.textContent = message;
+
+  chatbotMessage.appendChild(p);
+
+  const messages = document.querySelector(".chatbot-messages");
+  messages.appendChild(chatbotMessage);
+});
+</script>
+</body>
+</html>

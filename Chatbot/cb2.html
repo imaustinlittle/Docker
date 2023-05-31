@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Service Chatbot</title>
+  <style>
+    /* CSS styles */
+
+    /* ... (existing styles) ... */
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="message">
+      <div class="label">Bot:</div>
+      <div class="bot">
+        <div class="bubble">Welcome to our customer service chat! How can I assist you today?</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="message">
+      <div class="label">You:</div>
+      <div class="user">
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      var userInput = document.getElementById("user-input");
+      var userMessage = userInput.value;
+
+      if (userMessage.trim() !== "") {
+        var container = document.createElement("div");
+        container.className = "container";
+
+        var message = document.createElement("div");
+        message.className = "message";
+
+        var label = document.createElement("div");
+        label.className = "label";
+        label.textContent = "You:";
+
+        var userBubble = document.createElement("div");
+        userBubble.className = "user";
+        userBubble.innerHTML = '<div class="bubble">' + userMessage + '</div>';
+
+        message.appendChild(label);
+        message.appendChild(userBubble);
+        container.appendChild(message);
+
+        document.body.appendChild(container);
+
+        // Simulate bot response
+        setTimeout(function() {
+          receiveMessage(userMessage);
+        }, 1000);
+
+        userInput.value = "";
+      }
+    }
+
+    function receiveMessage(userMessage) {
+      var container = document.createElement("div");
+      container.className = "container";
+
+      var messageDiv = document.createElement("div");
+      messageDiv.className = "message";
+
+      var label = document.createElement("div");
+      label.className = "label";
+      label.textContent = "Bot:";
+
+      var botBubble = document.createElement("div");
+      botBubble.className = "bot";
+      botBubble.innerHTML = '<div class="bubble">' + getBotResponse(userMessage) + '</div>';
+
+      messageDiv.appendChild(label);
+      messageDiv.appendChild(botBubble);
+      container.appendChild(messageDiv);
+
+      document.body.appendChild(container);
+    }
+
+    function getBotResponse(userMessage) {
+      // Add your logic here to determine the appropriate bot response based on the user's message
+
+      // Example logic:
+      if (userMessage.toLowerCase().includes("hello")) {
+        return "Hello! How can I assist you today?";
+      } else if (userMessage.toLowerCase().includes("order")) {
+        return "To place an order, please visit our website or contact our sales team.";
+      } else if (userMessage.toLowerCase().includes("payment")) {
+        return "For payment-related inquiries, please contact our billing department.";
+      } else {
+        return "I'm sorry, I can't provide a relevant response at the moment.";
+      }
+    }
+  </script>
+</body>
+</html>
